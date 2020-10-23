@@ -1,7 +1,11 @@
 # Brandon's Java Dojo
 Honing my java skills in the dojo
 
-The goal is to create a nice source of reference material for myself (or anyone that comes across this). Some common interview questions I have gotten (the kind without an NDA), code snippets where relevant, and some code challenges I've used as practice (the applications of the algorithm section).
+### Goals:
+- to create a nice source of reference material for myself (or anyone that comes across this)
+- answer some common interview questions I have gotten (the kind without an NDA)
+- code snippets where relevant
+- some code challenges I've used as practice (the applications of the algorithm section)
 
 ---
 
