@@ -101,8 +101,29 @@ Honing my java skills in the dojo
 - Binary Search Trees
 
 ## Algorithms
-
+  - Big Oh Notation
+  - Sorting & Searching: Bubblesort, Mergesort, Quicksort, Heapsort, Binary Search
+  - Graph Traversal: BFS, DFS, Applications of BFS & DFS
+  - Weighted Graphs: Shortest Path, Network Flows
+  - Combinatorial Search
+  - Dynamic Programming: Ugly Numbers, Fibonacci Numbers, Binomial Coefficient, Permutation Coeffiecient
+  - Common Problems
+    - Data Structures: Dictionaries, Priority Queues, Suffic Trees / Arrays, Graphs, Sets, Kd-Tree
+    - Numerical: Linear Equations, Bandwidth Reduction, Matrix Multiplication, Determinants & Permanents, Constrained & Unconstrained Optimization, Random Number Generation, Factoring / Primality, Arbitrary-Precision, Knapsack Problem, Discrete Fourier Transform
+    - Combinatorial: Sorting, Searching, Median, Generating (Permutations, Subsets, Partitions, Graphs), Calendar Calculations, Job Scheduling, Satisfyability
+    - Graph (Polynomial-Time): Shortest Path
+    - Graph (Hard): Traveling Salesman
+    - Set & String: text compression, string matching, cryptography, longest common substring, shortest common superstring
+  - Coding Challenges: Hackerrank, Leetcode, etc.
+  
 ## Design Patterns
+- Singleton
+- Factory
+- Strategy
+- Observer
+- Builder
+- Adapter
+- State
 
 ## Security
 
