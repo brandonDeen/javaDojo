@@ -7,6 +7,11 @@ Honing my java skills in the dojo
 - code snippets where relevant
 - some code challenges I've used as practice (the applications of the algorithm section)
 
+
+### What this is NOT:
+- an all encompassing resource
+- a replacement for a textbook
+
 ---
 
 ## TODO (Add Section for the following):
@@ -134,6 +139,12 @@ Honing my java skills in the dojo
 ## System Design & Scalability
 
 ## Testing
+
+## Other Stuff
+- Angular
+- Sql
+- Git
+- Agile Methodologies
 
 ## References
 - The Algorithm Design Manual by Steven S. Skiena
