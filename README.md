@@ -67,6 +67,7 @@ Honing my java skills in the dojo
 - Method Overriding: the subclass has the same method with the same name and exactly the same number and type of parameters and same return type as a superclass
   - to “Change” existing behavior of the method
   - run-time polymorphism
+  
 ### Design Principles:
 - Do Not Repeat Yourself
 - SOLID:
@@ -220,17 +221,55 @@ Honing my java skills in the dojo
   - Synchronization: a process which keeps all concurrent threads in execution to be in sync
   - Asynchronous: process operates independently from other processes
   - Synchronous: process runs only as a result of some other process being completed or handed off
-- Collections:
+- Collections: TODO
 - Object Cloning: the process of creating an exact copy of an object
   - use clone() method creates a new instance of the class and initializes all fields with the same contents
   - must implement Cloneable and override clone()
 - Covariant Return Type:
 - Dynamic Binding:
 - Runtime Polymorphism (aka Dynamic Method Dispatch): process in which a call to an overridden method is resolved at runtime rather than at compile-time
-- Generics:
-- Reflection:
+- Generics: methods that are written with a single method declaration and can be called with arguments of different types
+  - no primitives allowed
+  - enforce type correctness at compile time
+  - K is for key, V is for Value, T is for Type, E is for element, ? is wildcard
+  - <? super T> means unknown type that is a superclass of T
+  - <? extends Number> means unknown type that is a subclass of Number
+  ```java
+  public <T> List<T> fromArrayToList(T[] a) {   
+    return Arrays.stream(a).collect(Collectors.toList());
+  }
+  
+  // OR
+  public <? super T> List<T> fromArrayToList(T[] a) {
+    ...
+  }
+  
+  // OR
+  public <? extends > List<T> fromArrayToList(T[] a) {
+    ...
+  }
+  
+  // OR
+  public <T extends Number> List<T> fromArrayToList(T[] a) {
+    ...
+  }
+  
+  // OR
+  public <T extends Number & Comparable> List<T> fromArrayToList(T[] a) {
+    ...
+  }
+  ```
+- Reflection: allows us to inspect or/and modify runtime attributes of classes, interfaces, fields, and methods
 - Singleton Class: a class whose only one instance can be created at any given time, in one JVM. A class can be made singleton by making its constructor private.
-- create custom annotation:
+- create custom annotation: 
+  - declare it with @interface annotation
+  - ad meta-annotations to specify scope and target
+- HashMap vs HashTable
+  ||HashMap|HashTable|
+  |Synchronized|No|Yes|
+  |Null Key|yes, 1 is allowed|no|
+  |Null Values|yes, multiple|no|
+- hashing: by default, will use Object.hashCode() unless overridden and must consistently return the same integer, provided no information used in equals comparison on the object is modified (i.e. if x.equals(y) then x.hashCode() == y.hashCode())
 - String vs StringBuilder vs StringBuffer:
     | | String | StringBuilder | StringBuffer |
     |---|---|---|---|
@@ -292,13 +331,14 @@ Honing my java skills in the dojo
   | fast | slow, requires extra indirection to find the corresponding methods |
   
 ### Java 8
-- functional interfaces:
-- lambda expressions:
-- optionals:
-- method references:
-- default methods:
-- Streams:
-- Collectors:
+- functional interfaces: interface with only a single abstract method (create with @FunctionalInterface)
+- lambda expressions: anonymous function vs anonymous inner classes, less code
+- optionals: to avoid NullPointerExceptions
+  - empty(): is value null
+  - check if null using isPresent() or ifPresent(doSomething)
+  - orElse(this) and orElseGet(that): if null default to this or that
+- method references: object::instanceMethod, Class::staticMethod, Class::instanceMethod, Class::new
+- default methods: interface can implement a default method, so that implementing classes can use that by default vs implementing their own version
   
 ## Data Structures
 - Arrays & Lists
@@ -337,7 +377,6 @@ Honing my java skills in the dojo
 - OAuth2
 - PingAccess
 - Cookies
-- 
 
 ## Spring (https://www.edureka.co/blog/interview-questions/spring-interview-questions/)
 Summary: opens source framework created to reduce complexity of applications, it is light-weight and loosely coupled, layered architecture allows you to select components to use, provides support to various other framework
@@ -348,58 +387,107 @@ Summary: opens source framework created to reduce complexity of applications, it
   - open source
 - Dependency Injection: you do not have to create your objects but have to describe how they should be created, and the IOC container will wire them together
   - Constructor vs Setter Injection
+    |Constructor|Setter|
+    |---|---|
+    |no partial injection|partial injection|
+    |doesnt override setter property|overrides constructor if both are defined|
+    |creates new instance if any modifications occur|doesnt create new instance if a property is changed|
+    |better for too many properties| better for few properties|
 - Inversion of Control (IOC): objects give their dependencies instead of creating or looking for dependent objects
   - IOC Container: creates the objects, wires them together, configures them and manages their complete life cycle
     - BeanFactory: factory class that contains a collection of beans, and instantiates beans as needed
     - ApplicationContext: built on top of the BeahFactory
-  - Comparison:
 - Aspect Oriented Programming (AOP): separating application business logic from system services
-- Bean:
+- Bean: an object that is instantiated, assembled, and managed by a Spring IoC container
+  - singelton: only one instance of bean will be created for each container (not thread safe)
+  - prototype: new instance everytime bean is requested
+  - request: prototype but for web applications / http request
+  - session: new bean for each http session
+  - global-session: portlet applications
 - Configuration:
   - XML based
-  - Annotation based:
+  - Annotation based
   - Java Based
-- Scopes:
-- Bean Lifecycle
-- Inner Bean
-- Autowiring:
-  - modes
+- Scopes: TODO
+- Bean Lifecycle: TODO
+- Inner Bean: TODO
+- Autowiring: enables programmer to inject bean automatically, without explicit injection logic
   - limitations
 - Annotations
+  - Controller, RequestMapping, ResponseBody, Autowired, PathVariable, Service
 - Data Access
-  - Hibernate
+  - Hibernate: object relational mapping (ORM) for CRUD operations
 - Aspect Oriented Programming
 
 ## RESTful Services (https://www.softwaretestinghelp.com/restful-web-services-interview-question/)
 Summary:
 - features
-- protocol
-- addressing
-- messaging
-- HTTP methods
-  - Put vs post
-- HTTP request
-- HTTP response
-- statelessness:
-  - Advantages
-  - Disadvantages
-- constraints
-- resource
-- caching
+- protocol: HTTP
+- addressing: locates resources that are present on the service
+- messaging: exchanging databetween client and server through HTTP Request and Response
+- HTTP methods: 
+  - get: read-only
+  - put: creating new resource (result is always the same)
+  - post: updating or creating a new resource (result is always different)
+  - delete: deleting resource
+  - options: fetches list of supported options of resources available
+- HTTP request: http method method, uri, http version, header with info about data, body with representation of resources
+- HTTP response: request code, http version, http response header, response body
+  - codes: 2XX success, 3XX redirection, 4XX client error, 5XX server error 
+- statelessness: state of clients application not stored on server and passed on
+- resource: object of a type (image, HTML file, text, data, etc)
+- caching: server response is stored so that a cached copy can be used when required without generating same response again
 - cache-control header
-- payload
-- jax-rs
+- payload: request data in body
+- jax-rs: Java API for RESTful web services
 - common HTTP status codes:
 - best practicies
+  - validate every inpout
+  - inputs should be well formed
+  - never pass sensitive info through URL
+  - user should be authenticated
+  - only use HTTP error messages
+  - URI should be descriptive
 
 ## System Design & Scalability
 
 ## Testing
 
+
 ## Angular
-- features
-- directives
-- promises
+- project consists of:
+  - angular.json: clis configuration for build, serve, test
+  - features, components, models, services
+- Components – A component controls one or more views. Each view is some specific section of the screen. Every Angular application has at least one component, known as the root component. It is bootstrapped inside the main module, known as the root module. A component contains application logic defined inside a class. This class is responsible for interacting with the view via an API of properties and methods.
+- Data Binding – The mechanism by which parts of a template coordinates with parts of a component is known as data binding. In order to let Angular know how to connect both sides (template and its component), the binding markup is added to the template HTML.
+- Dependency Injection (DI) – Angular makes use of DI to provide required dependencies to new components. Typically, dependencies required by a component are services. A component’s constructor parameters tell Angular about the services that a component requires. So, a dependency injection offers a way to supply fully-formed dependencies required by a new instance of a class.
+- Directives – The templates used by Angular are dynamic in nature. Directives are responsible for instructing Angular about how to transform the DOM when rendering a template. Actually, components are directives with a template. Other types of directives are attribute and structural directives.
+- Metadata – In order to let Angular know how to process a class, metadata is attached to the class. For doing so decorators are used.
+- Modules – Also known as NgModules, a module is an organized block of code with a specific set of capabilities. It has a specific application domain or a workflow. Like components, any Angular application has at least one module. This is known as the root module. Typically, an Angular application has several modules.
+- Routing – An Angular router is responsible for interpreting a browser URL as an instruction to navigate to a client-generated view. The router is bound to links on a page to tell Angular to navigate the application view when a user clicks on it.
+- Services – A very broad category, a service can be anything ranging from a value and function to a feature that is required by an Angular app. Technically, a service is a class with a well-defined purpose.
+- Template – Each component’s view is associated with its companion template. A template in Angular is a form of HTML tags that lets Angular know that how it is meant to render the component.
+- lifecycle hooks: ngOnChanges, ngOnInit, etc
+- directives: functions that are executed by angular compiler when the found in the DOM
+  - attribute (ngClass, ngStyle), structural(\*ngIf, \*ngFor), or custom.
+- promises: always asynchronous, eager, executes immediately when called, provide a single value
+- observable: stream that allows passing of multiple events, it is lazy and does not execute until a subscription is made, callback is made for each event, can be synchronous, can emit 0 to many values
+- how to share data between components?: parent/child components
+  - parent to child: @Input in the child component
+  - parent to child: @ViewChild in parent identifies child component
+  - child to parent: @ViewComponent, parent has a "child" property
+  - child to parent: @Output and EventEmitter, parent captures emitted data
+- string interpolation: using {{ }}, to display component data
+- annotation vs decorator: both use @
+  - annotation: hard-coded, used by compiler, reflect metadata
+  - decorator: function that adds metadata to a class or method (@Component, NgModule, Input, Output, Injectable)
+- provider: object declared to angular so that it can be injected in the constructor of your components, directives and other classes
+- Angular Ahead-of-time (AOT) Compiler: applicaiton compiles during build time
+  - fast rendering, fewer ajax requests, minimizing errors, better security
+- Model View ViewModel (MVVM):
+  - Model: data and the business logic of an application, or we may say it contains the structure of an entity
+  - View: visual layer
+  - ViewModel: abstract layer of the application and acts as a bridge between the View and Model(business logic)
 
 
 ## Sql
