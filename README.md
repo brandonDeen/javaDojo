@@ -69,13 +69,13 @@ Honing my java skills in the dojo
   - run-time polymorphism
   
 ### Design Principles:
-- Do Not Repeat Yourself
+- Do Not Repeat Yourself (DRY)
 - SOLID:
-  - Single Responsibility
-  - Open / Closed
-  - Liskov Substitution
-  - Interface Segregation
-  - Dependency Inversion
+  - Single Responsibility: a class should only have a single responsibility, only changes to one part of the softwares application should be able to affect the specification of the class
+  - Open / Closed: software entities should be... *OPEN for extension* and *CLOSED for modification*
+  - Liskov Substitution: objects of a superclass shall be replaceable with objects of its subclass without breaking the application
+  - Interface Segregation: seperate interfaces so that no client should be forced to depend on methods it does not use
+  - Dependency Inversion: high level modules should not depend on low-level modules, both should depend on abstractions (interfaces). abstractions should not depend on details (concrete implementations), details should depend on abstractions.
     
 ## General Java Facts (aka Trivia Questions)
 - JDK vs JRE vs JVM
@@ -363,20 +363,28 @@ Honing my java skills in the dojo
   - Coding Challenges: Hackerrank, Leetcode, etc.
   
 ## Design Patterns
-- Singleton
-- Factory
+- Singleton: restricts instantiation of a class to a "single" instance
+  - Use When: exactly one object is needed to coordinate actions across the system
+- Factory (creational): methods for creating objects without having to specify the exact class of the object that will be created.
+  - Use When: you need to construct a class with a component that has not yet been determined
 - Strategy
 - Observer
-- Builder
+- Builder: seperate the construction of a complex object from its representation
+  - Use When: you need to seperate/delegate the creation of an object or create it in parts
 - Adapter
 - State
-- MVC
+- Model-View-Controller (MVC): divides logic of user interfaces (UI) into three elements, in order to separate internal representations of information from the presentation of the information
+- Model-View-ViewModel (MVVM) or model-view-binder: separation of ui code from development of business logic/back end code and bound togehter with a viewmodel/binder 
 
 ## Security
-- OAuth
+- OAuth: open standard for access delegation (TODO add more)
+  - Vulnerabilities/Threats: TODO
 - OAuth2
+  - Vulnerabilities/Threats: TODO
 - PingAccess
+  - Vulnerabilities/Threats: TODO
 - Cookies
+  - Vulnerabilities/Threats: TODO
 
 ## Spring (https://www.edureka.co/blog/interview-questions/spring-interview-questions/)
 Summary: opens source framework created to reduce complexity of applications, it is light-weight and loosely coupled, layered architecture allows you to select components to use, provides support to various other framework
@@ -450,9 +458,19 @@ Summary:
   - URI should be descriptive
 
 ## System Design & Scalability
+- Canary Deployments: a pattern for rolling out releases to a subset of users or servers, test it, then roll out the change to the rest of the servers
+- Blue/Green Deployments: application release model that gradually transfers user traffic from a previous version (BLUE) of an app or microservice to a nearly identical new release (GREEN), both of which are running in production
 
 ## Testing
-
+- static: testing without running the program, i.e. proofreading, compiling, syntax, data flow, etc
+- dynamic: testing when the program is run
+- passive: verifying system behavior without any interaction with the software product
+- box
+  - white box: testing the internal workings of a program (unit testing)
+  - black box: testing the functionality of the program without any knowledge of the internal implementation (functional testing)
+- mutation: modifying a program in small ways (mutants) and running tests to detect and reject the mutant (killing the mutant)
+- a/b
+- 
 
 ## Angular
 - project consists of:
