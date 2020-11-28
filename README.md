@@ -333,6 +333,8 @@ Honing my java skills in the dojo
 ### Java 8
 - functional interfaces: interface with only a single abstract method (create with @FunctionalInterface)
 - lambda expressions: anonymous function vs anonymous inner classes, less code
+  - intermediate expression: returns another stream (EX: ...)
+  - terminal expression: does not return a stream (EX: ...)
 - optionals: to avoid NullPointerExceptions
   - empty(): is value null
   - check if null using isPresent() or ifPresent(doSomething)
@@ -426,6 +428,9 @@ Summary: opens source framework created to reduce complexity of applications, it
 - Data Access
   - Hibernate: object relational mapping (ORM) for CRUD operations
 - Aspect Oriented Programming
+- Autwire vs Inject
+  - Autowire is spring specific
+  - Inject is found in other dependency injection tools (Guice)
 
 ## RESTful Services (https://www.softwaretestinghelp.com/restful-web-services-interview-question/)
 Summary:
@@ -449,6 +454,12 @@ Summary:
 - payload: request data in body
 - jax-rs: Java API for RESTful web services
 - common HTTP status codes:
+  - 200
+  - 400
+  - 404
+  - 500
+- using get vs post
+- using put vs post
 - best practicies
   - validate every inpout
   - inputs should be well formed
@@ -485,7 +496,10 @@ Summary:
 - Routing – An Angular router is responsible for interpreting a browser URL as an instruction to navigate to a client-generated view. The router is bound to links on a page to tell Angular to navigate the application view when a user clicks on it.
 - Services – A very broad category, a service can be anything ranging from a value and function to a feature that is required by an Angular app. Technically, a service is a class with a well-defined purpose.
 - Template – Each component’s view is associated with its companion template. A template in Angular is a form of HTML tags that lets Angular know that how it is meant to render the component.
-- lifecycle hooks: ngOnChanges, ngOnInit, etc
+- lifecycle hooks: 
+  - ngOnChanges
+  - ngOnInit
+  - ???
 - directives: functions that are executed by angular compiler when the found in the DOM
   - attribute (ngClass, ngStyle), structural(\*ngIf, \*ngFor), or custom.
 - promises: always asynchronous, eager, executes immediately when called, provide a single value
