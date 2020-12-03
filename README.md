@@ -76,6 +76,21 @@ Honing my java skills in the dojo
   - Liskov Substitution: objects of a superclass shall be replaceable with objects of its subclass without breaking the application
   - Interface Segregation: seperate interfaces so that no client should be forced to depend on methods it does not use
   - Dependency Inversion: high level modules should not depend on low-level modules, both should depend on abstractions (interfaces). abstractions should not depend on details (concrete implementations), details should depend on abstractions.
+- 12 Factor App: 
+  - GOALS:
+    - minimize time for new devs joining, maximum portability, enable ci/cd, scale up w/o significant architecture changes
+  1) Codebase: one codebase tracked in version control, many deploys
+  2) Dependencies: Explicitly declare and isolate dependencies
+  3) Config: store config in the environment
+  4) Backing Services: treat backing services as attached resources
+  5) Build, Release, Run: strictly separate build and run stages
+  6) Processes: execute the app as one or more stateless processes
+  7) Port Binding: Export services via port binding
+  8) Concurrency: scale out via process model
+  9) Disposability: maximize robustness with fast startup and graceful shutdown
+  10) dev/prod parity: keep development, staging, and production as similar as possible
+  11) Logs: treat logs as event streams
+  12) Admin Processes: run admin / management tasks as one-off processes
     
 ## General Java Facts (aka Trivia Questions)
 - JDK vs JRE vs JVM
