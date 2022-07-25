@@ -1,10 +1,8 @@
 package com.brandondeen.datastructures;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- */
 public class LinkedList {
     private Node head;
 
@@ -16,37 +14,42 @@ public class LinkedList {
         this.head = node;
     }
 
-    public LinkedList(List<Node> nodes) {
-        nodes.forEach(node -> this.add(node));
-    }
-
-    /**
-     *
-     * @param nodeValue
-     * @param nodeLabel
-     */
-    public void add(Integer nodeValue, String nodeLabel) {
-        Node node = new Node(nodeValue, nodeLabel);
-        this.add(node);
-    }
-
-    /**
-     *
-     * @param node
-     */
-    public void add(Node node) {
+    public void push(Node node) {
         Node next = this.head;
         this.head = node;
         this.head.setNext(next);
     }
 
-    /**
-     *
-     */
+    public void enqueue(Node node) {
+        if (this.head == null) {
+            this.head = node;
+        } else {
+            Node current = this.head;
+            while (current.getNext() != null) {
+                current = current.getNext();
+            }
+
+            current.setNext(node);
+        }
+    }
+
+    public Node dequeue() {
+        Node current = this.head;
+        if (this.head != null) {
+            this.head = this.head.getNext();
+        }
+
+        return current;
+    }
+
+    public Node pop() {
+        return this.dequeue();
+    }
+
     public void reverse() {
         Node current = this.head;
         Node previous = null;
-        while (current.getNext() != null) {
+        while (current != null) {
             // save current.next
             Node temp = current.getNext();
 
@@ -59,32 +62,44 @@ public class LinkedList {
             // set current to temp
             current = temp;
         }
+
+        this.setHead(previous);
     }
 
-    /**
-     *
-     */
+    public int getSize() {
+        int size = 0;
+        Node current = this.head;
+        while (current != null) {
+            size++;
+            current = current.getNext();
+        }
+        return size;
+    }
+
+    public List<Node> toArrayList() {
+        List<Node> result = new ArrayList<>();
+        Node current = this.head;
+        while (current != null) {
+            result.add(current);
+            current = current.getNext();
+        }
+        return result;
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         Node current = this.head;
         while (current != null) {
-            sb.append(current.getLabel());
-            sb.append("(");
             sb.append(current.getValue());
-            sb.append(")");
             if (current.getNext() != null) {
                 sb.append(" -> ");
             }
+            current = current.getNext();
         }
 
         return sb.toString();
     }
 
-    /**
-     *
-     * @param value
-     * @return
-     */
     public Node findByValue(Integer value) {
         Node current = this.head;
 
@@ -98,14 +113,50 @@ public class LinkedList {
         return null;
     }
 
-    public class Node {
+    public Node getNodeAtIndex(int index) {
+        Node current = this.head;
+        int currentIndex = 0;
+        while (current != null && currentIndex <= index) {
+            if (currentIndex == index) {
+                return current;
+            }
+
+            currentIndex++;
+            current = current.getNext();
+        }
+
+        return null;
+    }
+
+    public Node getHead() {
+        return this.head;
+    }
+
+    public void setHead(Node node) {
+        this.head = node;
+    }
+
+    public Node removeNode(Integer value) {
+        Node current = this.head;
+        Node previous = null;
+        while (current != null) {
+            if (current.getValue() == value) {
+                if (previous == null) { this.setHead(current.getNext()); }
+                else { previous.setNext(current.getNext()); }
+                return current;
+            }
+            previous = current;
+            current = current.getNext();
+        }
+        return null;
+    }
+
+    public static class Node {
         private Integer value;
-        private String label;
         private Node next;
 
-        public Node(Integer value, String label) {
-            this.value = value;
-            this.label = label;
+        public Node(Integer value) {
+            this.setValue(value);
             this.next = null;
         }
 
@@ -117,20 +168,24 @@ public class LinkedList {
             this.value = value;
         }
 
-        public String getLabel() {
-            return this.label;
-        }
-
-        public void setLabel(String label) {
-            this.label = label;
-        }
-
         public Node getNext() {
             return this.next;
         }
 
         public void setNext(Node next) {
             this.next = next;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Node)) {
+                return false;
+            }
+            Node node = (Node) o;
+            return getValue().equals(node.getValue());
         }
     }
 }
